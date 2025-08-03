@@ -21,13 +21,13 @@ static int	ft_variadic(char c, va_list lst)
 	else if (c == 'p')
 		return (ft_putpointer(va_arg(lst, void *)));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_base((long)va_arg(lst, int), BASE_10, 10));
+		return (ft_putnbr_dec((long)va_arg(lst, int), BASE_10, 10));
 	else if (c == 'u')
-		return (ft_putunsigned(va_arg(lst, unsigned int)));
+		return (ft_putunsigned(va_arg(lst, unsigned long)));
 	else if (c == 'x')
-		return (ft_putnbr_base(va_arg(lst, unsigned int), LOWER_BASE, 16));
+		return (ft_putnbr_base(va_arg(lst, unsigned long), LOWER_BASE, 16));
 	else if (c == 'X')
-		return (ft_putnbr_base(va_arg(lst, unsigned int), UPPER_BASE, 16));
+		return (ft_putnbr_base(va_arg(lst, unsigned long), UPPER_BASE, 16));
 	else if (c == '%')
 		return (write(1, "%", 1));
 	else

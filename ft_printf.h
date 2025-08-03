@@ -23,8 +23,9 @@
 int	ft_printf(const char *format, ...);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
-int	ft_putnbr_base(long num, char *base, unsigned long base_len);
+int	ft_putnbr_base(unsigned long num, char *base, unsigned long base_len);
 int	ft_putpointer(void *ptr);
 int	ft_putunsigned(unsigned int num);
+int	ft_putnbr_dec(long num, char *base, unsigned long base_len);
 
 #endif
