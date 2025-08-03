@@ -45,7 +45,16 @@ int	ft_putnbr_dec(long num, char *base, unsigned long base_len)
 	len += write(1, &base[num % base_len], 1);
 	return (len);
 }
+int	ft_putnbr_base_u(unsigned long num, char *base, unsigned long base_len)
+{
+	int	len;
 
+	len = 0;
+	if (num >= base_len)
+		len += ft_putnbr_base_u(num / base_len, base, base_len);
+	len += write(1, &base[num % base_len], 1);
+	return (len);
+}
 int	ft_putnbr_base(unsigned long num, char *base, unsigned long base_len)
 {
 	int	len;
@@ -73,16 +82,5 @@ int	ft_putpointer(void *ptr)
 		return (write(1, "(nil)", 5));
 	len += write(1, "0x", 2);
 	len += ft_putnbr_base(address, LOWER_BASE, 16);
-	return (len);
-}
-
-int	ft_putunsigned(unsigned int num)
-{
-	int	len;
-
-	len = 0;
-	if (num >= 10)
-		len += ft_putunsigned(num / 10);
-	len += ft_putchar((num % 10) + '0');
 	return (len);
 }
