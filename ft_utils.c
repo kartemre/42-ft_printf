@@ -12,12 +12,6 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
 int	ft_putstr(char *str)
 {
 	int	len;
@@ -45,6 +39,7 @@ int	ft_putnbr_dec(long num, char *base, unsigned long base_len)
 	len += write(1, &base[num % base_len], 1);
 	return (len);
 }
+
 int	ft_putnbr_base_u(unsigned long num, char *base, unsigned long base_len)
 {
 	int	len;
@@ -55,6 +50,7 @@ int	ft_putnbr_base_u(unsigned long num, char *base, unsigned long base_len)
 	len += write(1, &base[num % base_len], 1);
 	return (len);
 }
+
 int	ft_putnbr_base(unsigned long num, char *base, unsigned long base_len)
 {
 	int	len;

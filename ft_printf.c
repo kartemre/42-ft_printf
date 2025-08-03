@@ -12,6 +12,12 @@
 
 #include "ft_printf.h"
 
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
 static int	ft_variadic(char c, va_list lst)
 {
 	if (c == 'c')
