@@ -6,15 +6,14 @@
 #    By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/02 14:18:31 by ekart             #+#    #+#              #
-#    Updated: 2025/08/02 18:43:33 by ekart            ###   ########.fr        #
+#    Updated: 2025/08/03 08:50:18 by ekart            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRC = 	ft_printf.c \
-	 	ft_utils.c \
-	 	ft_printf_func.c
+	 	ft_utils.c 
 
 OBJ = $(SRC:.c=.o)
 

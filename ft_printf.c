@@ -6,39 +6,67 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 17:09:13 by ekart             #+#    #+#             */
-/*   Updated: 2025/08/02 19:50:21 by ekart            ###   ########.fr       */
+/*   Updated: 2025/08/03 10:35:14 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_control(char c, va_list lst)
+static int	ft_variadic(char c, va_list lst)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(macro, int)));
+		return (ft_putchar(va_arg(lst, int)));
 	else if (c == 's')
-		return (ft_putstr(va_arg(macro, char *)));
+		return (ft_putstr(va_arg(lst, char *)));
 	else if (c == 'p')
-	{
-		ft_putstr("0x");
-		return (ft_putpointer(va_arg(macro, void *)) + 2);
-	}
+		return (ft_putpointer(va_arg(lst, void *)));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr(va_arg(macro, int)));
+		return (ft_putnbr_base((long)va_arg(lst, int), BASE_10, 10));
+	return (0);
+}
+
+int	ft_printf(const char *input, ...)
+{
+    int	i;
+	int	len;
+	va_list lst;
+	
+	va_start(lst, input);
+	i = 0;
+	len  = 0;
+	while (input[i])
+	{
+		if (input[i] == '%')
+		{
+			i++;
+			len += ft_variadic(input[i], lst);
+		}
+		else
+			len += write(1, &input[i], 1);
+		i++;
+	}
+	va_end(lst);
+	return (len);
+}
+
+
+
+
+/*
+
+
 	else if (c == 'u')
 		return (ft_putstr(
-				ft_convert(va_arg(macro, unsigned int), "0123456789")));
+				ft_convert(va_arg(lst, unsigned int), "0123456789")));
 	else if (c == 'x')
 		return (ft_putstr(
-				ft_convert(va_arg(macro, unsigned int), "0123456789abcdef")));
+				ft_convert(va_arg(lst, unsigned int), "0123456789abcdef")));
 	else if (c == 'X')
 		return (ft_putstr(
-			ft_convert(va_arg(macro, unsigned int), "0123456789ABCDEF")));
+			ft_convert(va_arg(lst, unsigned int), "0123456789ABCDEF")));
 	else if (c == '%')
 		return (write(1, "%%", 1));
-
-	return (0);
-	
+	*/	
 
 /*
 
@@ -58,29 +86,3 @@ int	ft_control(char c, va_list lst)
 	else
 		return (-1);
 		*/
-}
-
-
-int	ft_printf(const char *input, ...)
-{
-    int	i;
-	int	len;
-	va_list lst;
-	
-	va_start(lst, input);
-	i = 0;
-	len  = 0;
-	while (input[i])
-	{
-		if (input[i] == "%")
-		{
-			len += ft_control(input[i], lst);
-			i++;	
-		}
-		else
-			len += write(1, &input[i], 1);
-		i++;
-	}
-	va_end(lst);
-	return (len);
-}
