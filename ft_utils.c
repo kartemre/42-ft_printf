@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 08:11:41 by ekart             #+#    #+#             */
-/*   Updated: 2025/08/03 12:05:43 by ekart            ###   ########.fr       */
+/*   Updated: 2025/08/03 12:13:22 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_putnbr_base(long num, char *base, unsigned long base_len)
 
 int	ft_putpointer(void *ptr)
 {
-	int		len;
+	int				len;
 	unsigned long	address;
 
 	address = (unsigned long)ptr;
